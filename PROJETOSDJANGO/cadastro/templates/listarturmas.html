@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Listar Turmas</h1>
+<a href="{% url 'incluirturma' %}" class="btn btn-primary">
+    Cadastrar novo curso
+</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Curso</th>
+            <th>Data Início</th>
+            <th>Data Término</th>
+            <th>Horário</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for t in turmas %}
+        <tr>
+            <td>{{ t.curso }}</td>
+            <td>{{ t.dataInicio | date:"d/m/Y"}}</td>
+            <td>{{ t.dataTermino | date:"d/m/Y" }}</td>
+            <td>
+                {{ t.dataInicio | date:"H:i"}}
+                as
+                {{ t.dataTermino | date:"H:i"}}
+
+            </td>
+            <td> 
+        <a href="{% url 'alterarturma' t.id %}"
+        class="btn btn-secondary">
+        Alterar
+        </a>   
+        <a href="{% url 'excluirturma' t.id %}"
+            class="btn btn-danger">
+            Excluir
+        </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

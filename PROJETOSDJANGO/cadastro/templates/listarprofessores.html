@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Listar Professores</h1>
+<a href="{% url 'incluirprofessores' %}" class="btn btn-primary">
+    Cadastrar novo professor
+</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Matricula</th>
+            <th>E-mail</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for c in professores %}
+        <tr>
+            <td>{{ c.nome }}</td>
+            <td>{{ c.matricula }}</td>
+            <td>{{ c.email }}</td>
+            <td> 
+        <a href="{% url 'alterarprofessores' c.id %}"
+            class="btn btn-secondary">
+                Alterar
+            </a>Excluir
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
